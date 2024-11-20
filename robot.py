@@ -27,8 +27,15 @@ class MyRobot(commands2.TimedCommandRobot):
 
     def robotInit(self):
         """Robot initialization function"""
-
         self.container = RobotContainer()
+
+    def autonomousInit(self) -> None:
+        """Called when autonomous mode is enabled"""
+        self.autonomousCommand = self.container.getAutonomousCommand()
+
+        if self.autonomousCommand:
+            self.autonomousCommand.schedule()
+
     def teleopPeriodic(self):
         commands2.CommandScheduler.getInstance().run()
             
