@@ -1,20 +1,18 @@
 import commands2
-import typing
-from subsystems.limelight import limelightSystem
+from subsystems.limelight import LimelightSystem
 
-class limelightDisplay(commands2.CommandBase):
-    def __init__(self, limelight: limelightSystem) -> None:
+class LimelightDisplay(commands2.CommandBase):
+    def __init__(self, limelight: LimelightSystem) -> None:
         super().__init__()
         self.limelight = limelight
         self.addRequirements(limelight)
 
     def execute(self) -> None:
-        # print(self.limelight.get_results().tagId)
         results = self.limelight.get_results()
-        print(results.tagId if results else 'none')
+        print(results.tag_id if results else 'none')
 
-    def isFinished(self) -> bool:
+    def isFinished(self) -> bool: # pylint: disable=invalid-name
         return False
-    
+
     def end(self) -> None:
         pass

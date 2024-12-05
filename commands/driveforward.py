@@ -1,11 +1,13 @@
+import time
+
 import commands2
 import wpilib.drive
 
 from subsystems.drivetrain import Drivetrain
-from subsystems.limelight import limelightSystem
+from subsystems.limelight import LimelightSystem
 
 class DriveForward(commands2.CommandBase):
-    def __init__(self, drivetrain: Drivetrain, limelight: limelightSystem) -> None:
+    def __init__(self, drivetrain: Drivetrain, limelight: LimelightSystem) -> None:
         super().__init__()
         self.drivetrain = drivetrain
         self.limelight = limelight
@@ -18,28 +20,24 @@ class DriveForward(commands2.CommandBase):
     def execute(self) -> None:
         results = self.limelight.get_results()
 
-        tag = results.tagId if results else -1
+        tag = results.tag_id if results else -1
 
-        print(tag)
+        if tag == -1:
+            self.drivetrain.arcade_drive(0, 0.5)
+            return
 
-        if tag == 1:
-            # Forward
-            self.drivetrain.arcadeDrive(0, 0.5)
-        elif tag == 2:
+        if tag % 2 == 1:
+            self.drivetrain.arcade_drive(0.5, 0)
+            time.sleep(5)
+        else:
+            self.drivetrain.arcade_drive(-0.5, 0)
+            time.sleep(5)
 
-            # Left
-            self.drivetrain.arcadeDrive(0.5, 0)
-        elif tag == 3:
+        return
 
-            # Right
-            self.drivetrain.arcadeDrive(-0.5, 0)
-        elif tag == 4:
 
-            # Backward
-            self.drivetrain.arcadeDrive(0, -0.5)
-
-    def isFinished(self) -> bool:
+    def isFinished(self) -> bool: # pylint: disable=invalid-name
         return False
 
     def end(self) -> None:
-        self.drivetrain.arcadeDrive(0, 0)
+        self.drivetrain.arcade_drive(0, 0)

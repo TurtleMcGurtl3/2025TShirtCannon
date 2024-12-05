@@ -1,5 +1,7 @@
-class limelightResults:
-    tagId: int
+# pylint: disable=too-few-public-methods
+
+class LimelightResults:
+    tag_id: int
 
     def __init__(self, data: dict) -> None:
-        self.tagId = data["Fiducial"][0]["fID"]
+        self.tag_id = data["Fiducial"][0]["fID"]

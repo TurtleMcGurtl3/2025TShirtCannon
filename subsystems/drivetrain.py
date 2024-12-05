@@ -1,8 +1,9 @@
 import commands2
 import phoenix5
-import constants
 import wpilib
 import wpilib.drive
+
+import constants
 
 class Drivetrain(commands2.Subsystem):
     def __init__(self) -> None:
@@ -16,5 +17,5 @@ class Drivetrain(commands2.Subsystem):
         self.left_motor_2.setInverted(True)
         self.robot_drive = wpilib.drive.DifferentialDrive(self.left_motor_1, self.right_motor_1)
 
-    def arcadeDrive(self, y: float, z: float) -> None:
+    def arcade_drive(self, y: float, z: float) -> None:
         self.robot_drive.arcadeDrive(y, z)
