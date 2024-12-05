@@ -4,7 +4,7 @@ import commands2
 import wpilib.drive
 
 from subsystems.drivetrain import Drivetrain
-from subsystems.limelight import LimelightSystem
+from subsystems.limelight_system import LimelightSystem
 
 class DriveForward(commands2.CommandBase):
     def __init__(self, drivetrain: Drivetrain, limelight: LimelightSystem) -> None:

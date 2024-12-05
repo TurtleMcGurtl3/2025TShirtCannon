@@ -6,7 +6,7 @@ import wpilib
 import constants
 
 from subsystems.drivetrain import Drivetrain
-from subsystems.limelight import LimelightSystem
+from subsystems.limelight_system import LimelightSystem
 
 from commands.arcadedrive import ArcadeDrive
 from commands.limelightdisplay import LimelightDisplay

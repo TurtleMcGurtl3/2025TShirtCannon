@@ -1,5 +1,5 @@
 import commands2
-from subsystems.limelight import LimelightSystem
+from subsystems.limelight_system import LimelightSystem
 
 class LimelightDisplay(commands2.CommandBase):
     def __init__(self, limelight: LimelightSystem) -> None:
