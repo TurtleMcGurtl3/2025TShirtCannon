@@ -20,3 +20,9 @@ class RobotContainer:
     def configureButtonBindings(self) -> None:
         # self.drivetrain.setDefaultCommand(ArcadeDrive(self.drivetrain, lambda: self.stick.getX(), lambda: self.stick.getY()))
         self.limelight.setDefaultCommand(limelightDisplay(self.limelight))
+
+    def teleopPeriodic(self) -> None:
+        if limelightSystem.get_results().tagId % 2 == 0:
+            self.arcadeDrive.arcadeDrive(1.0, 20.0)
+        if limelightSystem.get_results().tagId % 2 == 1:
+            self.arcadeDrive.arcadeDrive(1.0, -20.0)
